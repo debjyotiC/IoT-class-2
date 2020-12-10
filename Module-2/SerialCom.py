@@ -18,9 +18,3 @@ for itr in range(0, 10):
 
 avg = np.average(sensor_data)
 print("The avg. of all data is: ", avg)
-
-
-
-
-
-
