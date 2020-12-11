@@ -18,7 +18,8 @@ class ArduinoComm:
             data = float(ser.read(7).decode().strip())
             self.sensor_data.append(data)
             self.data_point.append(itr)
-            print("The data at {sample} is {data_sen}".format(sample=itr, data_sen=data))
+            print('.', end='')
+            # print("The data at {sample} is {data_sen}".format(sample=itr, data_sen=data))
             time.sleep(1)
 
     def calculateAverage(self):
