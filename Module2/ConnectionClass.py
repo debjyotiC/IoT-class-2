@@ -12,7 +12,7 @@ class ArduinoComm:
         self.serialPort = serialPort
         self.baudRate = baudRate
 
-    def connectWith(self, number):
+    def connectWith(self, number, delay=1):
         ser = serial.Serial(self.serialPort, self.baudRate)
         for itr in range(0, number):
             data = float(ser.read(7).decode().strip())
@@ -20,7 +20,7 @@ class ArduinoComm:
             self.data_point.append(itr)
             print('.', end='')
             # print("The data at {sample} is {data_sen}".format(sample=itr, data_sen=data))
-            time.sleep(1)
+            time.sleep(delay)
 
     def calculateAverage(self):
         return np.average(self.sensor_data)
