@@ -1,6 +1,6 @@
 from Module2.ConnectionClass import ArduinoComm
 
-myConn = ArduinoComm('/dev/cu.usbmodem14101', 9600)
-myConn.connectWith(10)
+myConn = ArduinoComm(serialPort='/dev/cu.usbmodem14101', baudRate=9600)
+myConn.connectWith(number=10, delay=2)
 print(f"The average is: {myConn.calculateAverage()}")
-# myConn.writeCSV('results2.csv')
+myConn.writeCSV(filename='results2.csv')
