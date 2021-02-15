@@ -1,0 +1,4 @@
+import machine
+
+p12 = machine.Pin(12) # at pin 12
+pwm12 = machine.PWM(p12, freq = 500, duty = 512) # PWM pulse with 50% duty cycle
