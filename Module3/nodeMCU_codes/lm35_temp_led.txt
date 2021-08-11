@@ -1,0 +1,21 @@
+
+int lm35_pin = A0;
+int led_pin = 5; //D1
+float temp_c;
+
+void setup(){
+  pinMode(led_pin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop(){
+  int val= analogRead(lm35_pin);
+  flaot temp_c = val * 0.322; // voltage to degree C
+  Serial.print(temp_c);
+  if(temp_c => 80){
+     digitalWrite(led_pin, HIGH);  // glow led if temp is above 80 C
+  }
+  else
+     digitalWrite(led_pin, LOW);
+  delay(1000);
+}

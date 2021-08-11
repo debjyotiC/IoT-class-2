@@ -1,0 +1,21 @@
+#include <MQ2.h>
+
+int pin = A0;
+int lpg, co, smoke;
+
+MQ2 mq2(pin);
+
+void setup(){
+  Serial.begin(9600);
+  mq2.begin();
+}
+
+void loop(){
+  lpg = mq2.readLPG();
+  co = mq2.readCO();
+  smoke = mq2.readSmoke();
+ 
+  Serial.print(lpg);
+  Serial.println("ppm");
+  delay(1000);
+}

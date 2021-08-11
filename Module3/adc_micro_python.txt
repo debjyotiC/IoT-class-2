@@ -1,0 +1,8 @@
+from machine import ADC, Pin
+import time
+
+adc = ADC(Pin(26))
+
+for i in range(0, 10):
+    print(adc.read_u16())  # res 20 bit
+    time.sleep(1)  # 1s 
