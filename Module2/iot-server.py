@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, render_template
 from flask_restful import reqparse
 import datetime
 import pymongo
@@ -8,6 +8,21 @@ app = Flask(__name__)
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 db_connect = myclient["test_DB"]  # database name
 db_collection = db_connect["sensor_data"]  # collection name
+
+
+# REST API to get sensor data
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/action', methods=['GET', 'POST'])
+def action():
+    parser = reqparse.RequestParser()
+    parser.add_argument('api_key', type=str)
+    data = parser.parse_args()
+    reply_got = [i for i in db_collection.find(data)][-1]
+    return render_template('index.html', data=reply_got['field1'], time=reply_got['date'])
 
 
 # REST API to get sensor data
@@ -36,4 +51,4 @@ def feeds():
 
 
 if __name__ == '__main__':
-    app.run(host="192.168.0.107")
+    app.run()
